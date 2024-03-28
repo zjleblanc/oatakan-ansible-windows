@@ -1,13 +1,14 @@
+---
 - name: Deploy Windows Instances on ec2
   hosts: localhost
-  gather_facts: False
+  gather_facts: false
   connection: local
-  become: no
+  become: false
   vars_files:
     - win-nodes-ec2.yml
   vars:
     ansible_port: 5986
-    windows: yes
+    windows: true
   roles:
     - ec2-find-amis
     - ansible-role-ec2

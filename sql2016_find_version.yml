@@ -1,3 +1,4 @@
+---
 - name: Install SQL 2016
   hosts: all
 
@@ -9,8 +10,9 @@
 
     - name: fail if no instance name found
       fail:
-        msg: 'could not find MSSQL instance name'
-      when: sql_server_instance_names.properties.InstalledInstances.value is undefined or sql_server_instance_names.properties.InstalledInstances.value | length == 0
+        msg: could not find MSSQL instance name
+      when: sql_server_instance_names.properties.InstalledInstances.value is undefined or sql_server_instance_names.properties.InstalledInstances.value | length ==
+        0
 
     - name: find instance properties
       win_reg_stat:

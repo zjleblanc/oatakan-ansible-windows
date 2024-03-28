@@ -1,5 +1,6 @@
+---
 - name: Upgrade to SQL 2016
   hosts: all
 
   roles:
-  - sqlupgrade
+    - sqlupgrade

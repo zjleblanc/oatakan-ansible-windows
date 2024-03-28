@@ -1,6 +1,7 @@
+---
 - name: remove computer objects
   hosts: all
-  gather_facts: yes
+  gather_facts: true
   serial: 1
 
   pre_tasks:
@@ -15,7 +16,7 @@
 
 - name: remove cluster object
   hosts: all
-  gather_facts: no
+  gather_facts: false
   vars:
     ansible_port: 5986
     ansible_connection: winrm
@@ -26,4 +27,4 @@
       role_action: deregister
       computer_name: "{{ cluster_name }}"
       delegate_to: "{{ windows_ad_server_ip }}"
-      run_once: yes
+      run_once: true

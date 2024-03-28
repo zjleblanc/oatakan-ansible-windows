@@ -1,8 +1,9 @@
+---
 - name: remove vms
   hosts: all
-  gather_facts: False
+  gather_facts: false
   connection: local
-  become: no
+  become: false
   vars_files:
     - win-nodes-ovirt.yml
 

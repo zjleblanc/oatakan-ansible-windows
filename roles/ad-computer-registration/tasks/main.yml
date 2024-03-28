@@ -1,5 +1,4 @@
 ---
-
 - include_tasks: register.yml
   when: role_action == 'register'
 

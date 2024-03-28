@@ -1,3 +1,4 @@
+---
 - name: stop iis service
   win_dsc:
     resource_name: service

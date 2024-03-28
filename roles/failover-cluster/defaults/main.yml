@@ -8,4 +8,4 @@ retry_count: 60
 
 dns_domain_name: example.com
 
-first_node: no
+first_node: false

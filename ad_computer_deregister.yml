@@ -1,3 +1,4 @@
+---
 - name: remove computer object to the domain
   hosts: all
 

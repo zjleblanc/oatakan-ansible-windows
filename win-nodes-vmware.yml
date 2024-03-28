@@ -11,28 +11,29 @@ nodes:
     app_name: windows_demo
     environment: dev
     networks:
-    - name: mgmt
-      ip: 192.168.1.52
-      netmask: 255.255.255.0
-      gateway: 192.168.1.254
-      domain: home.ad
-      dns_servers:
-      - 192.168.1.254
-      - 8.8.4.4
+      - name: mgmt
+        ip: 192.168.1.52
+        netmask: 255.255.255.0
+        gateway: 192.168.1.254
+        domain: home.ad
+        dns_servers:
+          - 192.168.1.254
+          - 8.8.4.4
     domain: home.ad
     memory: "{{ node_memory | default(4096) }}"
     cpu: "{{ node_cpu | default(2) }}"
     template: "{{ win_template_name | default('windows-2019-standard-core') }}"
     snapshot_src: Linked
-    linked_clone: True
+    linked_clone: true
     customization:
-      autologon: True
+      autologon: true
       autologoncount: 1
       orgname: Ansible
       fullname: Ansible
       timezone: 20
-      password: '{{ ansible_password }}'
+      password: "{{ ansible_password }}"
       runonce:
         - powershell.exe -command "Get-NetConnectionProfile | Set-NetConnectionProfile -NetworkCategory Private"
-        - powershell.exe -command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/ansible/ansible-documentation/devel/examples/scripts/ConfigureRemotingForAnsible.ps1 -OutFile C:\ConfigureRemotingForAnsible.ps1"
+        - powershell.exe -command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/ansible/ansible-documentation/devel/examples/scripts/ConfigureRemotingForAnsible.ps1
+          -OutFile C:\ConfigureRemotingForAnsible.ps1"
         - powershell.exe -ExecutionPolicy Unrestricted -File C:\ConfigureRemotingForAnsible.ps1 -ForceNewSSLCert -EnableCredSSP

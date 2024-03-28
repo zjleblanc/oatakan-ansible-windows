@@ -4,4 +4,4 @@
     name: myResourceGroup
     location: southcentralus
     state: absent
-    force: yes
+    force: true

@@ -1,6 +1,7 @@
+---
 - name: Install IIS and assign a cert
   hosts: all
 
   roles:
-  - iis
-  - iiscert
+    - iis
+    - iiscert

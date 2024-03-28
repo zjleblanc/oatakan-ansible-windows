@@ -1,3 +1,4 @@
+---
 - name: find ami for rhel7
   ec2_ami_info:
     owners: 309956199498
@@ -59,19 +60,19 @@
 - debug:
     var: rhel7_ami_id
   when:
-  - rhel7_ami_id is defined
+    - rhel7_ami_id is defined
 
 - debug:
     var: centos7_ami_id
   when:
-  - centos7_ami_id is defined
+    - centos7_ami_id is defined
 
 - debug:
     var: win2016_ami_id
   when:
-  - win2016_ami_id is defined
+    - win2016_ami_id is defined
 
 - debug:
     var: win2019_ami_id
   when:
-  - win2019_ami_id is defined
+    - win2019_ami_id is defined

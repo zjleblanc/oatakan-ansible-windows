@@ -1,5 +1,6 @@
+---
 - name: Create incident on Service Now
   hosts: all
 
   roles:
-  - snow
+    - snow

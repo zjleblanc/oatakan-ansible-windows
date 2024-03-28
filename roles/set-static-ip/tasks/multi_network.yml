@@ -1,5 +1,4 @@
 ---
-
 - name: Install required DSC modules
   win_psmodule:
     name: NetworkingDsc
@@ -19,7 +18,7 @@
 - name: gather new networking facts
   setup:
     filter:
-      - 'ansible_ip_addresses'
+      - ansible_ip_addresses
 
 - name: show the new ip address of the 2nd interface
   debug:

@@ -28,9 +28,9 @@
     State: Started
     PhysicalPath: "{{ item.path }}"
     BindingInfo:
-    - Protocol: http
-      Port: 8080
-      IPAddress: '*'
+      - Protocol: http
+        Port: 8080
+        IPAddress: "*"
   with_items: "{{ iis_sites }}"
   notify:
     - stop iis service
@@ -40,8 +40,8 @@
   win_dsc:
     resource_name: xFirewall
     ensure: Present
-    name: "iisport{{ item.port }}"
-    enabled: True
+    name: iisport{{ item.port }}
+    enabled: true
     localport: "{{ item.port }}"
     action: Allow
     direction: Inbound
@@ -53,22 +53,22 @@
 
 - name: Template simple web site to iis_site_path as index.html
   win_template:
-    src: 'index.html.j2'
-    dest: '{{ item.path }}\index.html'
+    src: index.html.j2
+    dest: "{{ item.path }}\\index.html"
   with_items: "{{ iis_sites }}"
 
 - name: proper response from iis is received
   win_uri:
     url: http://{{ ansible_host }}:8080/
-    return_content: yes
-    validate_certs: no
+    return_content: true
+    validate_certs: false
   register: response
   until: iis_test_message in response.content
   retries: 10
   delay: 1
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: output url
   debug:
-    msg: 'application is available at http://{{ ansible_host }}:8080/'
+    msg: application is available at http://{{ ansible_host }}:8080/
   when: response is success

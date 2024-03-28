@@ -1,8 +1,8 @@
+---
 - name: Install Third Party Software
   hosts: all
 
   tasks:
-
     - name: install Visual Studio Code, Git, and Putty
       win_chocolatey:
         name:

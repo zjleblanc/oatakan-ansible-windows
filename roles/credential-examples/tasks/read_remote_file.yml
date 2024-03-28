@@ -1,8 +1,7 @@
 ---
-
 - name: read remote file
   slurp:
-    src: '{{ remote_file_path }}'
+    src: "{{ remote_file_path }}"
   register: read_remote_file
   become: true
   become_method: runas

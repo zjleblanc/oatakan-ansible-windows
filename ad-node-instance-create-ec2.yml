@@ -1,12 +1,13 @@
+---
 - name: Deploy Windows AD Instances on ec2
   hosts: localhost
-  gather_facts: False
+  gather_facts: false
   connection: local
-  become: no
+  become: false
   vars_files:
     - node-config/ad-node-ec2.yml
   vars:
     ansible_port: 5986
-    windows: yes
+    windows: true
   roles:
     - ansible-role-ec2

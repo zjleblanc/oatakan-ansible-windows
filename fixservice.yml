@@ -1,5 +1,4 @@
 ---
-
 - name: Fix a broken Service
   hosts: all
 

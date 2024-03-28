@@ -1,5 +1,4 @@
 ---
-
 - name: Get drive space
   hosts: all
 

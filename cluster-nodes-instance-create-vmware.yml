@@ -1,11 +1,12 @@
+---
 - name: Deploy Windows Cluster Servers
   hosts: all
-  gather_facts: False
+  gather_facts: false
   connection: local
-  become: no
+  become: false
 
   vars_files:
     - node-config/cluster-nodes-vmware.yml
 
   roles:
-  - ansible-role-vmware
+    - ansible-role-vmware

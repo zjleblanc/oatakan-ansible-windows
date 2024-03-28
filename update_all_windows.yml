@@ -1,9 +1,9 @@
+---
 - name: install Windows Updates
   hosts: all
 
   tasks:
     - block:
-
         - name: check for missing updates.
           win_updates:
             state: searched
@@ -20,26 +20,24 @@
               - SecurityUpdates
               - UpdateRollups
               - Updates
-            reboot: yes
+            reboot: true
           when: update_count.found_update_count|int >= 1
 
       rescue:
-
         - name: reboot before continue to retry
           win_reboot:
 
         - name: install all windows updates (retry)
           win_updates:
             category_names:
-            - CriticalUpdates
-            - DefinitionUpdates
-            - SecurityUpdates
-            - UpdateRollups
-            - Updates
-            reboot: yes
+              - CriticalUpdates
+              - DefinitionUpdates
+              - SecurityUpdates
+              - UpdateRollups
+              - Updates
+            reboot: true
 
       always:
-
         - name: check for missing updates.
           win_updates:
             state: searched

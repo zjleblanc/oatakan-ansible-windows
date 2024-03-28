@@ -1,3 +1,4 @@
+---
 - name: Generate Self Sign CSR Request
   raw: New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname {{ inventory_hostname }}.lab.rhlabs.net | select Thumbprint | ft -HideTableHeaders
   register: csr
@@ -7,7 +8,7 @@
 
 - name: Remove Default Web Site
   win_iis_website:
-    name: "Default Web Site"
+    name: Default Web Site
     state: absent
 
 - name: Create directory structure
@@ -25,7 +26,7 @@
     state: started
     physical_path: c:\sites\Ansible
     parameters: logfile.directory:c:\sites\logs
-    ssl: True
+    ssl: true
   register: website
 
 - debug:

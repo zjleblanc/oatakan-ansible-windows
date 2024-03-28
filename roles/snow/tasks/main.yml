@@ -1,5 +1,4 @@
 ---
-
 - name: check existing CI
   snow_record:
     state: present
@@ -13,7 +12,7 @@
   vars:
     ansible_connection: local
   register: check_host
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: ensure CI record exists
   snow_record:
@@ -30,7 +29,7 @@
       mac_address: "{{ ansible_interfaces[0].macaddress }}"
       serial_number: "{{ ansible_product_serial }}"
       os: "{{ ansible_facts.os_family }}"
-      sys_tags: "app_name_windows_demo"
+      sys_tags: app_name_windows_demo
     lookup_field: name
   delegate_to: localhost
   vars:

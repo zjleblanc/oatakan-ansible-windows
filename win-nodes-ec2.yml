@@ -17,4 +17,3 @@ nodes:
           volume_size: 100
           delete_on_termination: true
     user_data: "{{ lookup('template', 'templates/userdata.txt.j2') }}"
-

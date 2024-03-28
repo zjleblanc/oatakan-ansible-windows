@@ -1,5 +1,6 @@
+---
 - name: Setup Various Registry Keys
   hosts: all
 
   roles:
-  - registry
+    - registry
