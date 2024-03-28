@@ -1,10 +1,11 @@
+---
 # Install SQL 2016
 
 - name: set up sqladmin user
   win_user:
     name: "{{ mssql_username }}"
     password: "{{ mssql_password }}"
-    password_never_expires: True
+    password_never_expires: true
     state: present
     groups:
       - Administrators
@@ -13,8 +14,8 @@
   win_feature:
     name: "{{ item }}"
     state: present
-    include_sub_features: True
-    include_management_tools: True
+    include_sub_features: true
+    include_management_tools: true
   with_items:
     - NET-Framework-Core
     - NET-Framework-Features
@@ -89,4 +90,4 @@
   win_service:
     name: MSSQLSERVER
     state: restarted
-    force_dependent_services: yes
+    force_dependent_services: true

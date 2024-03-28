@@ -1,3 +1,4 @@
+---
 - name: Install SQL 2019
   hosts: all
   vars:

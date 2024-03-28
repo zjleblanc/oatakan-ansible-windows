@@ -4,4 +4,4 @@
     run_sql_script_method: powershell
   when: ansible_version.full is version('2.10', '<')
 
-- include_tasks: '{{ run_sql_script_method }}.yml'
+- include_tasks: "{{ run_sql_script_method }}.yml"

@@ -1,3 +1,4 @@
+---
 - name: Harden Windows
   hosts: all
 

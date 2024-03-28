@@ -1,5 +1,4 @@
 ---
-
 - name: ensure dynatrace agent is {{ state }}
   win_chocolatey:
     name: dynatraceagent

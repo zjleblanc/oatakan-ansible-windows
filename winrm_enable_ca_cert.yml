@@ -1,3 +1,4 @@
+---
 - name: winrm enable cert
   hosts: all
   vars:
@@ -30,7 +31,7 @@
         state: present
         store_location: LocalMachine
         store_name: My
-        password: "{{ ansible_password }}"  # here you can update the password accordingly or remove if you don't have
+        password: "{{ ansible_password }}" # here you can update the password accordingly or remove if you don't have
       register: winrm_ca_cert
 
     - debug:
@@ -45,5 +46,5 @@
       changed_when: delete_winrm_https_listener.rc == 0
 
     - name: enable winrm to use the CA cert
-      win_shell: |
+      win_shell: |-
         winrm create winrm/config/Listener?Address=*+Transport=HTTPS '@{Hostname="{{ ansible_fqdn }}"; CertificateThumbprint="{{ winrm_ca_cert.thumbprints[0] }}"}'

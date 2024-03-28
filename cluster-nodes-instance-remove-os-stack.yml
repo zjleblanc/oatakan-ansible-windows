@@ -1,8 +1,9 @@
+---
 - name: Remove Windows Cluster Servers
   hosts: all
-  gather_facts: False
+  gather_facts: false
   connection: local
-  become: no
+  become: false
   vars:
     config_file: "{{ lookup('env', 'OS_CLIENT_CONFIG_FILE') }}"
   vars_files:

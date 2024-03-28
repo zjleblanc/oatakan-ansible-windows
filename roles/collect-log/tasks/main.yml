@@ -1,11 +1,10 @@
 ---
-
 - name: copy log file
   win_copy:
-    src: '{{ log_file }}'
+    src: "{{ log_file }}"
     dest: "{{ smb_share }}\\{{ destination_file_location }}\\{{ ansible_host }}_mcafee_log.txt"
-    remote_src: yes
-  become: yes
+    remote_src: true
+  become: true
   become_method: runas
   become_flags: logon_type=new_credentials logon_flags=netcredentials_only
   vars:

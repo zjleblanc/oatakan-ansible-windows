@@ -9,7 +9,7 @@
     validate_certs: false
     headers:
       X-Auth-Token: "{{ manageiq.api_token }}"
-      Content-Type: "application/json"
+      Content-Type: application/json
     status_code: 200
   register: lookup_vms_output
   until: lookup_vms_output.json.subcount > 0
@@ -22,7 +22,7 @@
 
 - name: Set the service URL
   set_fact:
-    svc_url: "/api/{{ manageiq.service }}"
+    svc_url: /api/{{ manageiq.service }}
 
 - name: Log svc_url
   debug: var=svc_url
@@ -55,7 +55,7 @@
     validate_certs: false
     headers:
       X-Auth-Token: "{{ manageiq.api_token }}"
-      Content-Type: "application/json"
+      Content-Type: application/json
     status_code: 200
   register: add_output
 
@@ -80,7 +80,7 @@
     validate_certs: false
     headers:
       X-Auth-Token: "{{ manageiq.api_token }}"
-      Content-Type: "application/json"
+      Content-Type: application/json
     status_code: 200
   register: tag_service_output
 
@@ -101,7 +101,7 @@
     validate_certs: false
     headers:
       X-Auth-Token: "{{ manageiq.api_token }}"
-      Content-Type: "application/json"
+      Content-Type: application/json
     status_code: 200
   register: assign_vmtag_output
   with_items: "{{ lookup_vms_output.results }}"
@@ -117,7 +117,7 @@
     validate_certs: false
     headers:
       X-Auth-Token: "{{ manageiq.api_token }}"
-      Content-Type: "application/json"
+      Content-Type: application/json
     status_code: 200
   register: lookup_user_output
 
@@ -145,7 +145,7 @@
     validate_certs: false
     headers:
       X-Auth-Token: "{{ manageiq.api_token }}"
-      Content-Type: "application/json"
+      Content-Type: application/json
     status_code: 200
   register: assign_cfowner_output
   with_items: "{{ lookup_vms_output.results }}"
@@ -153,4 +153,3 @@
 - name: Log assign_cfowner_output
   debug: var=assign_cfowner_output
   when: verbose
-

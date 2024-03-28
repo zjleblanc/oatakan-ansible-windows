@@ -1,3 +1,4 @@
+---
 - name: Windows AD Controller
   hosts: all
   vars:

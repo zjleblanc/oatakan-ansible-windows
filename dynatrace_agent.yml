@@ -3,5 +3,5 @@
   hosts: all
   roles:
     - role: dynatrace-agent
-      install_with: chocolatey  # or 'package' for ad-hoc installation
+      install_with: chocolatey # or 'package' for ad-hoc installation
       state: present # or 'absent' to remove

@@ -21,16 +21,16 @@
     timeout: 300
     flavor: "{{ item.flavor }}"
     nics: "{{ item.nics }}"
-    boot_from_volume: yes
-    terminate_volume: yes
+    boot_from_volume: true
+    terminate_volume: true
     volume_size: "{{ item.volume_size }}"
     userdata: "{{ item.user_data }}"
     meta:
       hostname: "{{ item.name }}"
       role: "{{ item.role }}"
       app_name: "{{ item.app_name }}"
-    auto_ip: yes
-    wait: yes
+    auto_ip: true
+    wait: true
   async: 7200
   poll: 0
   register: deploy
@@ -52,9 +52,3 @@
     timeout: 600
   with_items: "{{ instances.results }}"
   when: (instances | changed) and (nodes is defined)
-
-
-
-
-
-

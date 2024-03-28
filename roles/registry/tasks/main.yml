@@ -1,3 +1,4 @@
+---
 - name: Registry - Disable System Tray, Clock and Calendar UI
   win_regedit:
     path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell

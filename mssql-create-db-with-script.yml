@@ -1,3 +1,4 @@
+---
 - name: SQL 2016 Create DB with Script
   hosts: all
   vars:
@@ -5,4 +6,4 @@
     login_password: "{{ mssql_password }}"
     instance_name: "{{ ansible_hostname }}"
   roles:
-  - sql_create_db_with_script
+    - sql_create_db_with_script

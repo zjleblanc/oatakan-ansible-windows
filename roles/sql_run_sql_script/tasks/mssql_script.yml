@@ -1,12 +1,11 @@
 ---
-
 - name: Execute script
   community.general.mssql_script:
-    login_host: '{{ ansible_host | default(ansible_ssh_host) | default(inventory_hostname) }}'
+    login_host: "{{ ansible_host | default(ansible_ssh_host) | default(inventory_hostname) }}"
     login_user: sa
-    login_password: '{{ mssql_password }}'
+    login_password: "{{ mssql_password }}"
     output: dict
-    script: '{{ sql_script }}'
+    script: "{{ sql_script }}"
   delegate_to: localhost
   become: false
   register: mssql_execute_sql_query

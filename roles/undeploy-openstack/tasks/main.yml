@@ -20,8 +20,3 @@
   delegate_to: 127.0.0.1
   with_items: "{{ nodes }}"
   when: (nodes is defined) and (hostvars[inventory_hostname].openstack.name is defined) and (item.name == hostvars[inventory_hostname].openstack.name)
-
-
-
-
-

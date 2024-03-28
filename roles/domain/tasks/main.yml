@@ -1,5 +1,4 @@
 ---
-
 - name: add domain controller private IP as DNS server
   win_dns_client:
     adapter_names: "*"

@@ -1,7 +1,8 @@
+---
 - name: Create a db on MSSQL using DSC
   hosts: all
-  gather_facts: no
-  become: no
+  gather_facts: false
+  become: false
   vars:
     db_name: rhdemo1
 
@@ -20,7 +21,7 @@
         ServerName: localhost
         InstanceName: MSSQLServer
         Credential_username: sa
-        Credential_password: '{{ mssql_password }}'
+        Credential_password: "{{ mssql_password }}"
         SetQuery: |
           CREATE DATABASE ['{{ db_name }}']
         TestQuery: |
@@ -40,7 +41,7 @@
         resource_name: Firewall
         ensure: Present
         name: MSSQL
-        enabled: True
+        enabled: true
         localport: 1433
         action: Allow
         direction: Inbound

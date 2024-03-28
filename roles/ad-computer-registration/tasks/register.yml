@@ -1,5 +1,4 @@
 ---
-
 - name: add a powershell module
   win_psmodule:
     name: xActiveDirectory

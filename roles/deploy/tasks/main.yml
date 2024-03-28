@@ -1,12 +1,11 @@
-
-
+---
 # Clone a VM from a Template or existing running machine and customize
 - name: clone template and customize
   vmware_guest:
     hostname: "{{ lookup('env', 'VMWARE_HOST')|default(providers.vcenter.hostname) }}"
     username: "{{ lookup('env', 'VMWARE_USER')|default(providers.vcenter.username) }}"
     password: "{{ lookup('env', 'VMWARE_PASSWORD')|default(providers.vcenter.password) }}"
-    validate_certs: no
+    validate_certs: false
     datacenter: "{{ providers.vcenter.datacenter }}"
     cluster: "{{ providers.vcenter.cluster }}"
     resource_pool: "{{ providers.vcenter.resource_pool|default('') }}"
@@ -16,7 +15,7 @@
     linked_clone: "{{ item.linked_clone|default(omit) }}"
     customvalues: "{{ item.customvalues|default(omit) }}"
     state: poweredon
-    wait_for_ip_address: yes
+    wait_for_ip_address: true
     disk: "{{ item.disk|default(omit) }}"
     hardware:
       memory_mb: "{{ item.memory }}"
@@ -24,7 +23,7 @@
       scsi: paravirtual
     networks: "{{ item.networks }}"
     customization:
-      autologon: True
+      autologon: true
       orgname: Ansible
       fullname: Ansible
       # timezone 20 = Central Standard Time
@@ -33,14 +32,15 @@
       password: Password!1
       dns_servers: "{{ item.dns_servers|default([]) }}"
       runonce:
-      - powershell.exe -command "& $([scriptblock]::Create((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ansible/ansible-documentation/devel/examples/scripts/ConfigureRemotingForAnsible.ps1'))) -ForceNewSSLCert -EnableCredSSP"
-      #- powershell.exe Unblock-File C:\ConfigureRemotingForAnsible.ps1
-      #- powershell.exe -ExecutionPolicy Unrestricted -File C:\ConfigureRemotingForAnsible.ps1 -ForceNewSSLCert -EnableCredSSP
-      #- winrm set winrm/config/service/auth @{Basic="true"}
-      #- winrm set winrm/config/service @{AllowUnencrypted="true"}
-      #- winrm set winrm/config/client/auth @{CredSSP="true"}
-      - winrm set winrm/config/service/auth @{CredSSP="true"}
-      #- powershell.exe -command "& Invoke-WebRequest -Body @{'host_config_key'='{{ tower_callback.host_config_key|default(omit) }}'} -Method Post -Uri '{{ tower_callback.url|default(omit) }}'"
+        - powershell.exe -command "& $([scriptblock]::Create((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ansible/ansible-documentation/devel/examples/scripts/ConfigureRemotingForAnsible.ps1')))
+          -ForceNewSSLCert -EnableCredSSP"
+        #- powershell.exe Unblock-File C:\ConfigureRemotingForAnsible.ps1
+        #- powershell.exe -ExecutionPolicy Unrestricted -File C:\ConfigureRemotingForAnsible.ps1 -ForceNewSSLCert -EnableCredSSP
+        #- winrm set winrm/config/service/auth @{Basic="true"}
+        #- winrm set winrm/config/service @{AllowUnencrypted="true"}
+        #- winrm set winrm/config/client/auth @{CredSSP="true"}
+        - winrm set winrm/config/service/auth @{CredSSP="true"}
+  #- powershell.exe -command "& Invoke-WebRequest -Body @{'host_config_key'='{{ tower_callback.host_config_key|default(omit) }}'} -Method Post -Uri '{{ tower_callback.url|default(omit) }}'"
   async: 7200
   poll: 0
   register: deploy
@@ -62,9 +62,3 @@
     timeout: 600
   with_items: "{{ nodes }}"
   when: (instances | changed) and (nodes is defined)
-
-
-
-
-
-

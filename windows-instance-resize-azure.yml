@@ -1,10 +1,11 @@
+---
 - name: Change VM Size on Windows Instance on Azure
   hosts: all
-  gather_facts: False
+  gather_facts: false
   connection: local
-  become: no
+  become: false
   vars:
     ansible_port: 5986
-    windows: yes
+    windows: true
   roles:
     - resize-azure

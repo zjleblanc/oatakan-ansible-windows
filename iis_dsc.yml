@@ -1,3 +1,4 @@
+---
 - name: Install IIS with DSC
   hosts: all
   vars:

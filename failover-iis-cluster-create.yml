@@ -1,3 +1,4 @@
+---
 - name: prereqs
   hosts: all
 
@@ -7,7 +8,7 @@
     - role: failover-cluster-common
 
 - name: Create failover cluster on first node
-  hosts: '*cluster_first'
+  hosts: "*cluster_first"
   vars:
     ansible_port: 5986
     ansible_connection: winrm
@@ -15,10 +16,10 @@
     ansible_winrm_server_cert_validation: ignore
   roles:
     - role: failover-cluster
-      first_node: yes
+      first_node: true
 
 - name: Join failover clusters on other nodes
-  hosts: '*cluster_other'
+  hosts: "*cluster_other"
   vars:
     ansible_port: 5986
     ansible_connection: winrm
@@ -26,4 +27,4 @@
     ansible_winrm_server_cert_validation: ignore
   roles:
     - role: failover-cluster
-      first_node: no
+      first_node: false
